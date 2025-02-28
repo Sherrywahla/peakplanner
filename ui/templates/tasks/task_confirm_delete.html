@@ -1,0 +1,13 @@
+{% extends "../dashboard_base.html" %}
+{% block title %}Delete Task - PeakPlanner{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Are you sure you want to delete "{{ task.title }}"?</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Yes, Delete</button>
+</form>
+
+<a href="{% url 'tasks' %}" class="text-gray-500 mt-4">Cancel</a>
+{% endblock %}
