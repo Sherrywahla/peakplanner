@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard - PeakPlanner{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
+</head>
+<body class="bg-gray-100 flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md p-6">
+        <h2 class="text-xl font-bold mb-6">PeakPlanner</h2>
+        <nav>
+            <a href="{% url 'dashboard' %}" class="block p-2 rounded hover:bg-gray-200">Dashboard</a>
+            <a href="{% url 'tasks' %}" class="block p-2 rounded hover:bg-gray-200">Tasks</a>
+            <a href="{% url 'notes' %}" class="block p-2 rounded hover:bg-gray-200">Notes</a>
+            <a href="{% url 'reminders' %}" class="block p-2 rounded hover:bg-gray-200">Reminders</a>
+            <a href="{% url 'profile' %}" class="block p-2 rounded hover:bg-gray-200 mt-6">Profile</a>
+            <a href="{% url 'logout' %}" class="block p-2 text-red-500">Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
