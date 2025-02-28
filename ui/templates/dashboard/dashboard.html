@@ -1,0 +1,63 @@
+{% extends '../dashboard_base.html' %} {% block title %}Dashboard - PeakPlanner{%
+endblock %} {% block content %}
+<h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}!</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <!-- Tasks Overview -->
+  <div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-4">Tasks</h2>
+    {% if tasks %}
+    <ul class="list-disc pl-4">
+      {% for task in tasks %}
+      <li>
+        {{ task.title }} -
+        <span class="text-gray-500">{{ task.due_date }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-gray-600">No tasks available.</p>
+    {% endif %}
+    <a href="{% url 'tasks' %}" class="block mt-4 text-blue-600"
+      >View All Tasks</a
+    >
+  </div>
+
+  <!-- Notes Overview -->
+  <div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-4">Notes</h2>
+    {% if notes %}
+    <ul class="list-disc pl-4">
+      {% for note in notes %}
+      <li>{{ note.title }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-gray-600">No notes available.</p>
+    {% endif %}
+    <a href="{% url 'notes' %}" class="block mt-4 text-blue-600"
+      >View All Notes</a
+    >
+  </div>
+
+  <!-- Reminders Overview -->
+  <div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-4">Reminders</h2>
+    {% if reminders %}
+    <ul class="list-disc pl-4">
+      {% for reminder in reminders %}
+      <li>
+        {{ reminder.title }} -
+        <span class="text-gray-500">{{ reminder.reminder_time }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-gray-600">No reminders available.</p>
+    {% endif %}
+    <a href="{% url 'reminders' %}" class="block mt-4 text-blue-600"
+      >View All Reminders</a
+    >
+  </div>
+</div>
+{% endblock %}
