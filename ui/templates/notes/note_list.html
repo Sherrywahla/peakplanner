@@ -1,0 +1,20 @@
+{% extends "../dashboard_base.html" %}
+{% block title %}Notes - PeakPlanner{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Your Notes</h1>
+
+<a href="{% url 'note_create' %}" class="bg-blue-500 text-white px-4 py-2 rounded">+ Add Note</a>
+
+<ul class="mt-4">
+  {% for note in notes %}
+  <li class="p-2 border-b flex justify-between">
+    {{ note.title }} 
+    <a href="{% url 'note_update' note.id %}" class="text-blue-500">Edit</a>
+    <a href="{% url 'note_delete' note.id %}" class="text-red-500">Delete</a>
+  </li>
+  {% empty %}
+  <p>No notes yet.</p>
+  {% endfor %}
+</ul>
+{% endblock %}
