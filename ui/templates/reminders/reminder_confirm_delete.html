@@ -1,13 +1,16 @@
-{% extends "../dashboard_base.html" %}
-{% block title %}Delete Reminder - PeakPlanner{% endblock %}
-
-{% block content %}
-<h1 class="text-2xl font-bold mb-4">Are you sure you want to delete "{{ reminder.title }}"?</h1>
-
-<form method="POST">
-  {% csrf_token %}
-  <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Yes, Delete</button>
-</form>
-
-<a href="{% url 'reminders' %}" class="text-gray-500 mt-4">Cancel</a>
+{% extends "../dashboard_base.html" %} {% block title %}Delete Reminder | PeakPlanner{% endblock %} {% block content %}
+<div class="flex flex-col justify-start items-center h-screen p-6 bg-gray-100">
+  <div class="flex flex-col shadow-md px-8 py-6 items-center justify-center bg-white rounded-lg">
+    <h1 class="text-2xl font-bold mb-4">
+      Are you sure you want to delete "{{ reminder.title }}"?
+    </h1>
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">
+        Yes, Delete
+      </button>
+    </form>
+    <a href="{% url 'reminders' %}" class="text-gray-500 mt-4">Cancel</a>
+  </div>
+</div>
 {% endblock %}
