@@ -33,13 +33,13 @@ VOLUME /app/media
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 
-RUN mkdir -p /app/staticfiles
-
-RUN python manage.py collectstatic --noinput
+RUN python manage.py create_admin
 
 RUN python manage.py tailwind build
 
-RUN python manage.py create_admin
+RUN mkdir -p /app/staticfiles
+
+RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
