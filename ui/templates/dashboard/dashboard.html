@@ -1,7 +1,5 @@
-{% extends '../dashboard_base.html' %} {% block title %}Dashboard - PeakPlanner{%
-endblock %} {% block content %}
-<h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}!</h1>
-
+{% extends '../dashboard_base.html' %} {% block title %}Dashboard |
+PeakPlanner{% endblock %} {% block content %} {% comment %}
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
   <!-- Tasks Overview -->
   <div class="bg-white p-6 rounded-lg shadow-md">
@@ -22,42 +20,258 @@ endblock %} {% block content %}
       >View All Tasks</a
     >
   </div>
-
-  <!-- Notes Overview -->
-  <div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold mb-4">Notes</h2>
-    {% if notes %}
-    <ul class="list-disc pl-4">
-      {% for note in notes %}
-      <li>{{ note.title }}</li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p class="text-gray-600">No notes available.</p>
-    {% endif %}
-    <a href="{% url 'notes' %}" class="block mt-4 text-blue-600"
-      >View All Notes</a
-    >
+</div>
+{% endcomment %}
+<div class="pt-6 px-4">
+  <h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}!</h1>
+  <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Notes</h3>
+          <span class="text-base font-normal text-gray-500"
+            >This is a list of user notes</span
+          >
+        </div>
+        <div class="flex-shrink-0">
+          <a
+            href="{% url 'notes' %}"
+            class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2"
+            >View all</a
+          >
+        </div>
+      </div>
+      <div class="flex flex-col mt-8">
+        <div class="overflow-x-auto rounded-lg">
+          <div class="align-middle inline-block min-w-full">
+            <div class="shadow overflow-hidden sm:rounded-lg">
+              <table class="min-w-full divide-y divide-gray-200">
+                {% if notes %}
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Title
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Content
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white">
+                  {% for note in notes %}
+                  {% if forloop.counter <= 6 %}
+                      <tr>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-900"
+                        >
+                          {{ note.title }}
+                        </td>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-900"
+                        >
+                          {{ note.content }}
+                        </td>
+                      </tr>
+                      {% endif %}
+                  {% endfor %}
+                </tbody>
+                {% else %}
+                <div
+                  class="flex flex-col min-w-full justify-center items-center gap-3"
+                >
+                  <svg
+                    class="w-8 h-8"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    stroke="currentColor"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M18.364 5.63604C21.8787 9.15076 21.8787 14.8492 18.364 18.364C14.8492 21.8787 9.15076 21.8787 5.63604 18.364C2.12132 14.8492 2.12132 9.15076 5.63604 5.63604C9.15076 2.12132 14.8492 2.12132 18.364 5.63604ZM16.1925 17.6067L6.39327 7.80749C4.33767 10.5493 4.55666 14.4562 7.05025 16.9497C9.54384 19.4433 13.4507 19.6623 16.1925 17.6067ZM16.9497 7.05025C19.4433 9.54384 19.6623 13.4507 17.6067 16.1925L7.80749 6.39327C10.5493 4.33767 14.4562 4.55666 16.9497 7.05025Z"
+                        fill="#000000"
+                      ></path>
+                    </g>
+                  </svg>
+                  <p class="text-gray-600">No notes available.</p>
+                </div>
+                {% endif %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Reminders</h3>
+          <span class="text-base font-normal text-gray-500"
+            >This is a list of user reminders</span
+          >
+        </div>
+        <div class="flex-shrink-0">
+          <a
+            href="{% url 'reminders' %}"
+            class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2"
+            >View all</a
+          >
+        </div>
+      </div>
+      <div class="flex flex-col mt-8">
+        <div class="overflow-x-auto rounded-lg">
+          <div class="align-middle inline-block min-w-full">
+            <div class="shadow overflow-hidden sm:rounded-lg">
+              <table class="min-w-full divide-y divide-gray-200">
+                {% if reminders %}
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Title
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Date & Time
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white">
+                  {% for reminder in reminders %}
+                    {% if forloop.counter <= 6 %}
+                      <tr>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-900"
+                        >
+                          {{ reminder.title }}
+                        </td>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-500"
+                        >
+                          {{ reminder.remind_at }}
+                        </td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+                {% else %}
+                <div
+                  class="flex flex-col min-w-full justify-center items-center gap-3"
+                >
+                  <svg
+                    class="w-8 h-8"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    stroke="currentColor"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M18.364 5.63604C21.8787 9.15076 21.8787 14.8492 18.364 18.364C14.8492 21.8787 9.15076 21.8787 5.63604 18.364C2.12132 14.8492 2.12132 9.15076 5.63604 5.63604C9.15076 2.12132 14.8492 2.12132 18.364 5.63604ZM16.1925 17.6067L6.39327 7.80749C4.33767 10.5493 4.55666 14.4562 7.05025 16.9497C9.54384 19.4433 13.4507 19.6623 16.1925 17.6067ZM16.9497 7.05025C19.4433 9.54384 19.6623 13.4507 17.6067 16.1925L7.80749 6.39327C10.5493 4.33767 14.4562 4.55666 16.9497 7.05025Z"
+                        fill="#000000"
+                      ></path>
+                    </g>
+                  </svg>
+                  <p class="text-gray-600">No reminders available.</p>
+                </div>
+                {% endif %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <!-- Reminders Overview -->
-  <div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold mb-4">Reminders</h2>
-    {% if reminders %}
-    <ul class="list-disc pl-4">
-      {% for reminder in reminders %}
-      <li>
-        {{ reminder.title }} -
-        <span class="text-gray-500">{{ reminder.reminder_time }}</span>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p class="text-gray-600">No reminders available.</p>
-    {% endif %}
-    <a href="{% url 'reminders' %}" class="block mt-4 text-blue-600"
-      >View All Reminders</a
-    >
+  <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
+    <div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold leading-none text-gray-900">
+          Latest Tasks
+        </h3>
+        <a
+          href="{% url 'tasks' %}"
+          class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
+        >
+          View all
+        </a>
+      </div>
+      <div class="flow-root">
+        {% if tasks %}
+        <ul role="list" class="divide-y divide-gray-200">
+          {% for task in tasks %}
+            {% if forloop.counter <= 6 %}
+              <li class="py-3 sm:py-4">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate">
+                      {{ task.title }}
+                    </p>
+                  </div>
+                  <div
+                    class="inline-flex items-center text-base font-semibold text-gray-900"
+                  >
+                    {{ task.due_date|date:'Y-m-d' }}
+                  </div>
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        {% else %}
+        <div class="flex flex-col min-w-full justify-center items-center gap-3">
+          <svg
+            class="w-8 h-8"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M18.364 5.63604C21.8787 9.15076 21.8787 14.8492 18.364 18.364C14.8492 21.8787 9.15076 21.8787 5.63604 18.364C2.12132 14.8492 2.12132 9.15076 5.63604 5.63604C9.15076 2.12132 14.8492 2.12132 18.364 5.63604ZM16.1925 17.6067L6.39327 7.80749C4.33767 10.5493 4.55666 14.4562 7.05025 16.9497C9.54384 19.4433 13.4507 19.6623 16.1925 17.6067ZM16.9497 7.05025C19.4433 9.54384 19.6623 13.4507 17.6067 16.1925L7.80749 6.39327C10.5493 4.33767 14.4562 4.55666 16.9497 7.05025Z"
+                fill="#000000"
+              ></path>
+            </g>
+          </svg>
+          <p class="text-gray-600">No tasks available.</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
