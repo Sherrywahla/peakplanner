@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "django.contrib.sites",
-    'django_browser_reload',
+    # 'django_browser_reload',
     "tailwind",
     "ui",
     "tasks",
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    # "django_browser_reload.middleware.BrowserReloadMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
@@ -117,8 +117,9 @@ USE_I18N = True
 USE_TZ = True
 
 
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'ui', 'static_src'),
+    # os.path.join(BASE_DIR, 'ui', 'static_src'),
     os.path.join(BASE_DIR, 'ui', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
