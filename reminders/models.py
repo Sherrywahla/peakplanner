@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class Reminder(models.Model):
+    title = models.CharField(max_length=255, default="")
     message = models.CharField(max_length=255)
     remind_at = models.DateTimeField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

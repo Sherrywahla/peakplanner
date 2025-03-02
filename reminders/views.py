@@ -5,7 +5,7 @@ from .forms import ReminderForm
 
 @login_required
 def reminder_list(request):
-    reminders = Reminder.objects.filter(user=request.user).order_by("-reminder_time")
+    reminders = Reminder.objects.filter(user=request.user).order_by("-remind_at")
     return render(request, "reminders/reminder_list.html", {"reminders": reminders})
 
 @login_required

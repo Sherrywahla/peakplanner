@@ -4,7 +4,7 @@ from .models import Reminder
 class ReminderForm(forms.ModelForm):
     class Meta:
         model = Reminder
-        fields = ["title", "reminder_time"]
+        fields = ["title", "message", "remind_at"]
         widgets = {
-            "reminder_time": forms.DateTimeInput(attrs={"type": "datetime-local"}),
+            "remind_at": forms.DateTimeInput(attrs={"type": "datetime-local"}),
         }
