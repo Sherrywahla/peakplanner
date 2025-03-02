@@ -35,8 +35,6 @@ RUN python manage.py migrate
 
 RUN python manage.py tailwind build
 
-RUN python manage.py collectstatic
-
 EXPOSE 8000
 
 ENV DJANGO_SETTINGS_MODULE=settings.settings
