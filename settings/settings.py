@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-@ybd70fy62atvg(a_!_
 
 DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'peakplanner.onrender.com,localhost,127.0.0.1').split(',')
 
 
 INSTALLED_APPS = [
@@ -119,7 +119,7 @@ USE_TZ = True
 
 
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, 'ui', 'static_src'),
+    os.path.join(BASE_DIR, 'ui', 'static_src'),
     os.path.join(BASE_DIR, 'ui', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
