@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     lsb-release \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 RUN node -v && npm -v
@@ -36,6 +36,8 @@ RUN python manage.py migrate
 RUN python manage.py create_admin
 
 RUN python manage.py tailwind build
+
+RUN mkdir -p /app/staticfiles
 
 RUN python manage.py collectstatic --noinput
 
