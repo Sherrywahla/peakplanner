@@ -1,12 +1,60 @@
 {% extends '../base.html' %}
+{% load static %}
 {% block title %}Register - PeakPlanner{% endblock %}
+{% load socialaccount %}
 {% block content %}
-<div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold mb-4 text-center">Register</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="w-full bg-green-600 text-white py-2 rounded">Register</button>
-    </form>
-</div>
+    <div class="font-body">
+        <div class="min-h-screen flex fle-col items-center justify-center py-6 px-4">
+            <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl max-md:max-w-md w-full">
+                <div>
+                <a href="{% url 'landing' %}">
+                <img src="{% static 'images/logo/logo.png' %}" class="w-[50%]" />
+                </a>
+                <h2 class="lg:text-5xl text-3xl font-extrabold lg:leading-[55px] text-gray-800">
+                    Join PeakPlanner Today
+                </h2>
+                <p class="text-sm mt-6 text-gray-800">Boost your productivity and stay organized with PeakPlanner. Create an account to manage tasks, set reminders, and achieve your goals effortlessly.</p>
+                <p class="text-sm mt-12 text-gray-800">Already have an account? <a href="{% url 'login' %}" class="text-primary-600 font-semibold hover:underline ml-1">Log in here</a> and get back to planning!</p>
+                </div>
+                <form class="max-w-md md:ml-auto w-full" method="post">
+                    {% csrf_token %}
+                <h3 class="text-gray-800 text-3xl font-extrabold mb-8">
+                    Sign up
+                </h3>    
+                <div class="space-y-4">
+                    <div>
+                    <input id="id_username" name="username" type="text" autocomplete="username" required class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-primary-600 focus:bg-transparent" placeholder="Username" />
+                    {% if form.username.errors %}
+                        <p p class="p-4 text-red-500" role="alert">{{ form.username.errors.0 }}</p>
+                    {% endif %}
+                    </div>
+                    <div>
+                        <input id="id_email" name="email" type="email" autocomplete="email" required class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-primary-600 focus:bg-transparent" placeholder="Email address" />
+                        {% if form.email.errors %}
+                            <p p class="p-4 text-red-500" role="alert">{{ form.email.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <input id="id_password1" name="password1" type="password" autocomplete="new-password" required class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-primary-600 focus:bg-transparent" placeholder="Password" />
+                        {% if form.password1.errors %}
+                            <p p class="p-4 text-red-500" role="alert">{{ form.password1.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <input id="id_password2" name="password2" type="password" autocomplete="new-password" required class="bg-gray-100 w-full text-sm text-gray-800 px-4 py-3.5 rounded-md outline-primary-600 focus:bg-transparent" placeholder="Confirm password" />
+                        {% if form.password2.errors %}
+                            <p class="p-4 text-red-500" role="alert">{{ form.password2.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+    
+                <div class="!mt-8">
+                    <button class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-primary-600 hover:bg-primary-700 focus:outline-none">
+                    Register
+                    </button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
 {% endblock %}
