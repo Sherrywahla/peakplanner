@@ -1,14 +1,116 @@
 {% extends "../dashboard_base.html" %}
-{% block title %}Note Form - PeakPlanner{% endblock %}
+{% block title %}
+  {% if form.instance.id %}
+    Update Notes
+    {% else %}
+    Create Notes
+    {% endif %}
+    | PeakPlanner
+{% endblock %}
 
 {% block content %}
-<h1 class="text-2xl font-bold mb-4">Create / Update Note</h1>
-
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
-</form>
-
-<a href="{% url 'notes' %}" class="text-gray-500 mt-4">Back to Notes</a>
+<div
+  class="container mx-auto px-4 py-8 min-h-screens items-center flex flex-col justify-center"
+>
+  <div
+    class="flex flex-col md:flex-row justify-between items-center mb-6 min-w-full"
+  >
+    {% if form.instance.id %}
+    <h1 class="text-3xl font-bold">Update Note</h1>
+    {% else %}
+    <h1 class="text-3xl font-bold">Create Note</h1>
+    {% endif %}
+    <a
+      href="{% url 'notes' %}"
+      class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition duration-300 flex items-center gap-4"
+    >
+      <svg
+        class="w-4 h-4"
+        viewBox="0 0 32 32"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        fill="currentColor"
+        stroke="currentColor"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <g id="icomoon-ignore"></g>
+          <path
+            d="M14.389 7.956v4.374l1.056 0.010c7.335 0.071 11.466 3.333 12.543 9.944-4.029-4.661-8.675-4.663-12.532-4.664h-1.067v4.337l-9.884-7.001 9.884-7zM15.456 5.893l-12.795 9.063 12.795 9.063v-5.332c5.121 0.002 9.869 0.26 13.884 7.42 0-4.547-0.751-14.706-13.884-14.833v-5.381z"
+            fill="#000000"
+          ></path>
+        </g>
+      </svg>
+      Notes
+    </a>
+  </div>
+  <form
+    class="w-full flex flex-col bg-white shadow-md px-4 pb-6 rounded-md"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %} {% if form.instance.id %}
+    <input type="hidden" name="_method" value="PUT" />
+    {% endif %}
+    <div class="space-y-12 max-w-2xl">
+      <div class="border-b border-gray-900/10 pb-12 gap-8 py-6">
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-4">
+            <label
+              for="id_title"
+              class="block text-sm/6 font-medium text-gray-900"
+              >Title</label
+            >
+            <div class="mt-2">
+              <div
+                class="flex items-center border p-2 rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-primary-600"
+              >
+                <input
+                  type="text"
+                  name="title"
+                  id="id_title"
+                  class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                  value="{{ form.title.value|default:'' }}"
+                  placeholder="create notes title"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 col-span-full">
+          <label
+            for="id_content"
+            class="block text-sm/6 font-medium text-gray-900"
+            >Content</label
+          >
+          <div class="mt-2">
+            <textarea
+              name="content"
+              id="id_content"
+              rows="4"
+              class="block border w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-primary-600 sm:text-sm/6"
+            >{{ form.content.value|default:'' }}</textarea>
+          </div>
+          <p class="mt-3 text-xs/6 text-gray-600">
+            provide a content for your notes
+          </p>
+        </div>
+      </div>
+      <div class="mt-6 flex items-center justify-end gap-x-6">
+        <button
+          type="submit"
+          class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+        >
+          {% if form.instance.id %} Update {% else %} Create {% endif %}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
 {% endblock %}
