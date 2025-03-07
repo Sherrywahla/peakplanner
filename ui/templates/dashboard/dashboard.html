@@ -1,27 +1,5 @@
 {% extends '../dashboard_base.html' %} {% block title %}Dashboard |
-PeakPlanner{% endblock %} {% block content %} {% comment %}
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-  <!-- Tasks Overview -->
-  <div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold mb-4">Tasks</h2>
-    {% if tasks %}
-    <ul class="list-disc pl-4">
-      {% for task in tasks %}
-      <li>
-        {{ task.title }} -
-        <span class="text-gray-500">{{ task.due_date }}</span>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p class="text-gray-600">No tasks available.</p>
-    {% endif %}
-    <a href="{% url 'tasks' %}" class="block mt-4 text-blue-600"
-      >View All Tasks</a
-    >
-  </div>
-</div>
-{% endcomment %}
+PeakPlanner{% endblock %} {% block content %}
 <div class="pt-6 px-4">
   <h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}!</h1>
   <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
@@ -61,6 +39,18 @@ PeakPlanner{% endblock %} {% block content %} {% comment %}
                     >
                       Content
                     </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Status
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Priority
+                    </th>
                   </tr>
                 </thead>
                 <tbody class="bg-white">
@@ -73,9 +63,19 @@ PeakPlanner{% endblock %} {% block content %} {% comment %}
                           {{ note.title }}
                         </td>
                         <td
-                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-900"
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-500"
                         >
                           {{ note.content }}
+                        </td>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-500"
+                        >
+                          {{ note.status }}
+                        </td>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-500"
+                        >
+                          {{ note.priority }}
                         </td>
                       </tr>
                       {% endif %}
@@ -150,6 +150,18 @@ PeakPlanner{% endblock %} {% block content %} {% comment %}
                       scope="col"
                       class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
+                      Status
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Priority
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Date & Time
                     </th>
                   </tr>
@@ -162,6 +174,16 @@ PeakPlanner{% endblock %} {% block content %} {% comment %}
                           class="p-4 whitespace-nowrap text-sm font-normal text-gray-900"
                         >
                           {{ reminder.title }}
+                        </td>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-500"
+                        >
+                          {{ reminder.status }}
+                        </td>
+                        <td
+                          class="p-4 whitespace-nowrap text-sm font-normal text-gray-500"
+                        >
+                          {{ reminder.priority }}
                         </td>
                         <td
                           class="p-4 whitespace-nowrap text-sm font-normal text-gray-500"
@@ -231,6 +253,16 @@ PeakPlanner{% endblock %} {% block content %} {% comment %}
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-medium text-gray-900 truncate">
                       {{ task.title }}
+                    </p>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-500 truncate">
+                      {{ task.status }}
+                    </p>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-500 truncate">
+                      {{ task.priority }}
                     </p>
                   </div>
                   <div

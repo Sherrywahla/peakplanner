@@ -101,6 +101,38 @@
             provide a content for your notes
           </p>
         </div>
+        <fieldset>
+          <legend class="text-sm/6 font-semibold text-gray-900">Notes Status</legend>
+          <p class="mt-1 text-sm/6 text-gray-600">Select the notes status</p>
+          <div class="mt-6 space-y-6">
+            <div class="flex items-center gap-x-3">
+              <input id="id_pending" name="status" type="radio" value="pending" 
+                    {% if form.status.value == "pending" %}checked{% endif %} class="form-radio">
+              <label for="id_pending" class="text-sm font-medium text-gray-900">Pending</label>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <input id="id_in_progress" name="status" type="radio" value="in_progress" 
+                    {% if form.status.value == "in_progress" %}checked{% endif %} class="form-radio">
+              <label for="id_in_progress" class="text-sm font-medium text-gray-900">In Progress</label>
+            </div>
+            <div class="flex items-center gap-x-3">
+              <input id="id_completed" name="status" type="radio" value="completed" 
+                    {% if form.status.value == "completed" %}checked{% endif %} class="form-radio">
+              <label for="id_completed" class="text-sm font-medium text-gray-900">Completed</label>
+            </div>
+          </div>
+          <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div class="sm:col-span-4">
+              <label
+                for="id_priority"
+                class="block text-sm/6 font-medium text-gray-900"
+                >priority</label
+              >
+              <div class="mt-2">
+                  {{ form.priority }}
+              </div>
+            </div>
+          </div>
       </div>
       <div class="mt-6 flex items-center justify-end gap-x-6">
         <button

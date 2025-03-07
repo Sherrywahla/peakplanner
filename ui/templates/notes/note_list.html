@@ -1,9 +1,9 @@
 {% extends "../dashboard_base.html" %} {% block title %}Notes - PeakPlanner{% endblock %} {% block content %}
 <div class="container mx-auto px-4 py-8 h-screen">
   <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-    <h1 class="text-3xl font-bold">Reminders Listing</h1>
+    <h1 class="text-3xl font-bold">Notes Listing</h1>
     <a
-      href="{% url 'reminder_create' %}"
+      href="{% url 'note_create' %}"
       class="bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-600 transition duration-300 flex items-center gap-2"
     >
       <svg
@@ -41,6 +41,8 @@
         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
           <th class="py-3 px-6 text-left">Title</th>
           <th class="py-3 px-6 text-left">Content</th>
+          <th class="py-3 px-6 text-left">Status</th>
+          <th class="py-3 px-6 text-left">Priority</th>
           <th class="py-3 px-6 text-center">Actions</th>
         </tr>
       </thead>
@@ -49,6 +51,8 @@
         <tr class="border-b border-gray-200 hover:bg-gray-100">
           <td class="py-3 px-6 text-left">{{ note.title }}</td>
           <td class="py-3 px-6 text-left">{{ note.content }}</td>
+          <td class="py-3 px-6 text-left">{{ note.status }}</td>
+          <td class="py-3 px-6 text-left">{{ note.priority }}</td>
           <td class="py-3 px-6 text-center">
             <div class="flex item-center justify-center">
               <a

@@ -45,6 +45,8 @@
           <th class="py-3 px-6 text-left">Title</th>
           <th class="py-3 px-6 text-left">Message</th>
           <th class="py-3 px-6 text-left">Date</th>
+          <th class="py-3 px-6 text-left">Status</th>
+          <th class="py-3 px-6 text-left">Priority</th>
           <th class="py-3 px-6 text-center">Actions</th>
         </tr>
       </thead>
@@ -53,6 +55,8 @@
         <tr class="border-b border-gray-200 hover:bg-gray-100">
           <td class="py-3 px-6 text-left">{{ reminder.title }} </td>
           <td class="py-3 px-6 text-left">{{ reminder.message }}</td>
+          <td class="py-3 px-6 text-left">{{ reminder.status }}</td>
+          <td class="py-3 px-6 text-left">{{ reminder.priority }}</td>
           <td class="py-3 px-6 text-left">{{ reminder.remind_at }}</td>
           <td class="py-3 px-6 text-center">
             <div class="flex item-center justify-center">
