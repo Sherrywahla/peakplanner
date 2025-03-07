@@ -10,7 +10,7 @@ class Task(models.Model):
     ]
     STATUS_CHOICES = [
         ("pending", "Pending"),
-        ("In progress", "In Progress"),
+        ("in_progress", "In Progress"),
         ("completed", "Completed"),
     ]
     title = models.CharField(max_length=255)
