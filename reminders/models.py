@@ -9,7 +9,7 @@ class Reminder(models.Model):
     ]
     STATUS_CHOICES = [
         ("pending", "Pending"),
-        ("in_progress", "In Progress"),
+        ("In progress", "In Progress"),
         ("completed", "Completed"),
     ]
     title = models.CharField(max_length=255, default="")
